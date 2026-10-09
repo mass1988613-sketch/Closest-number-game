@@ -260,5 +260,260 @@ else{sessionStorage.removeItem('player');err(r.error);}
 }catch(e){err('تعذر استعادة الاتصال');}
 });
 </script>
+
+<style>
+/* شاشة تلفزيون كاملة */
+.tv-mode {
+  height:100vh;
+  height:100dvh;
+  overflow:hidden;
+}
+.tv-mode main {
+  max-width:none;
+  width:100%;
+  height:100vh;
+  height:100dvh;
+  padding:1.2vh 1.3vw;
+  display:flex;
+  flex-direction:column;
+  overflow:hidden;
+}
+.tv-mode main>.center {display:none}
+.tv-mode #game {
+  flex:1;
+  min-height:0;
+  display:grid;
+  direction:ltr;
+  grid-template-columns:minmax(0,1fr) minmax(0,2.1fr) minmax(0,1fr);
+  grid-template-rows:minmax(0,1fr);
+  gap:1vw;
+}
+.tv-mode #game>.card {
+  margin:0;
+  min-width:0;
+  min-height:0;
+  overflow:hidden;
+}
+.tv-mode #game>.card:first-child {
+  grid-column:2;
+  grid-row:1;
+  direction:rtl;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  padding:2vw;
+  background:linear-gradient(145deg,#20365c,#131d34);
+}
+.tv-mode #game>.card:first-child .muted {
+  font-size:1.4vw;
+}
+.tv-mode #code {
+  font-size:3vw;
+  color:#facc15;
+}
+.tv-mode #game>.card:first-child small {display:none}
+.tv-mode #round {
+  font-size:1.5vw;
+  margin:1vh 0;
+}
+.tv-mode #question {
+  font-size:clamp(20px,3.5vw,70px);
+  font-weight:800;
+  line-height:1.4;
+  text-align:center;
+  overflow-wrap:anywhere;
+  max-height:55%;
+  overflow:hidden;
+}
+.tv-mode #clock {
+  font-size:5vw;
+  color:#facc15;
+  margin-top:2vh;
+}
+.tv-mode #hostPanel,
+.tv-mode #playerPanel,
+.tv-mode #game>.card:last-child {
+  display:none!important;
+}
+.tv-mode #results {
+  grid-column:3;
+  grid-row:1;
+  direction:rtl;
+  display:flex!important;
+  flex-direction:column;
+  padding:1.2vw;
+}
+.tv-mode #results.hidden #correctAnswer,
+.tv-mode #results.hidden #resultRows {
+  display:none;
+}
+.tv-mode #results:not(.hidden) #tvAnswers {
+  display:none;
+}
+.tv-mode #game>.card:nth-last-child(2) {
+  grid-column:1;
+  grid-row:1;
+  direction:rtl;
+  display:flex;
+  flex-direction:column;
+  padding:1.2vw;
+}
+.tv-mode #results h2,
+.tv-mode #game>.card:nth-last-child(2) h2 {
+  font-size:1.9vw;
+  color:#facc15;
+  text-align:center;
+  margin:0 0 1vh;
+}
+.tv-mode #scores,
+.tv-mode #resultRows,
+.tv-mode #tvAnswers {
+  overflow:auto;
+  min-height:0;
+  scrollbar-width:none;
+}
+.tv-mode .score {
+  font-size:1.35vw;
+  padding:1vh .3vw;
+  gap:.5vw;
+  overflow-wrap:anywhere;
+}
+.tv-mode .score strong {
+  white-space:nowrap;
+  color:#facc15;
+}
+.tv-mode #correctAnswer {
+  font-size:1.5vw;
+  color:#4ade80;
+  text-align:center;
+}
+#tvSound {
+  display:none;
+}
+.tv-mode #tvSound {
+  display:block;
+  position:fixed;
+  top:1vh;
+  right:1vw;
+  z-index:100;
+  font-size:1vw;
+  padding:.5vw 1vw;
+  opacity:.9;
+}
+@media(max-height:550px) {
+  .tv-mode .score {padding:.5vh .2vw}
+  .tv-mode #clock {margin-top:1vh}
+}
+</style>
+
+<button id="tvSound" class="secondary" onclick="toggleTvSound()">
+🔊 تشغيل الموسيقى
+</button>
+
+<script>
+let tvAudio=null;
+let tvSoundOn=false;
+let tvMusicTimer=null;
+let tvLastPhase='';
+let tvLastSeconds=null;
+
+function audioContext(){
+  if(!tvAudio){
+    tvAudio=new (window.AudioContext||window.webkitAudioContext)();
+  }
+  return tvAudio;
+}
+
+function tone(freq,duration,volume=0.015,type='sine'){
+  if(!tvSoundOn)return;
+  const ctx=audioContext();
+  if(ctx.state==='suspended')ctx.resume();
+  const oscillator=ctx.createOscillator();
+  const gain=ctx.createGain();
+  oscillator.type=type;
+  oscillator.frequency.value=freq;
+  gain.gain.setValueAtTime(0.0001,ctx.currentTime);
+  gain.gain.exponentialRampToValueAtTime(
+    volume,ctx.currentTime+0.08
+  );
+  gain.gain.exponentialRampToValueAtTime(
+    0.0001,ctx.currentTime+duration
+  );
+  oscillator.connect(gain);
+  gain.connect(ctx.destination);
+  oscillator.start();
+  oscillator.stop(ctx.currentTime+duration+0.02);
+}
+
+let noteIndex=0;
+const melody=[220,261.63,293.66,261.63,196,246.94,261.63,220];
+
+function playMusic(){
+  if(tvMusicTimer||!tvSoundOn)return;
+  tone(melody[noteIndex++%melody.length],1.7,0.012);
+  tvMusicTimer=setInterval(()=>{
+    tone(melody[noteIndex++%melody.length],1.7,0.012);
+  },1900);
+}
+
+function stopMusic(){
+  if(tvMusicTimer){
+    clearInterval(tvMusicTimer);
+    tvMusicTimer=null;
+  }
+}
+
+function toggleTvSound(){
+  tvSoundOn=!tvSoundOn;
+  const btn=document.getElementById('tvSound');
+  btn.textContent=tvSoundOn?'🔇 كتم الموسيقى':'🔊 تشغيل الموسيقى';
+  if(tvSoundOn){
+    audioContext().resume();
+    if(tvLastPhase==='question')playMusic();
+  }else{
+    stopMusic();
+  }
+}
+
+socket.on('state',s=>{
+  if(role!=='tv'||s.code!==room)return;
+
+  let panel=document.getElementById('tvAnswers');
+  if(!panel){
+    panel=document.createElement('div');
+    panel.id='tvAnswers';
+    document.getElementById('results').appendChild(panel);
+  }
+
+  const finished=s.phase==='results';
+  const heading=document.querySelector('#results h2');
+  heading.textContent=finished?'📝 نتائج الإجابات':'📝 إجابات اللاعبين';
+
+  panel.innerHTML=s.players.map(p=>
+    '<div class="score"><span>'+esc(p.name)+
+    '</span><strong>'+(p.answered?'✅ أجاب':'⏳ ينتظر')+
+    '</strong></div>'
+  ).join('')||'بانتظار اللاعبين...';
+
+  if(s.phase==='question'){
+    if(tvLastPhase!=='question')playMusic();
+    if(s.seconds<=5 && s.seconds>0 &&
+       s.seconds!==tvLastSeconds){
+      tone(660,0.14,0.045);
+    }
+  }else{
+    stopMusic();
+    if(finished && tvLastPhase==='question'){
+      tone(523.25,0.4,0.035);
+      setTimeout(()=>tone(659.25,0.5,0.035),180);
+    }
+  }
+
+  tvLastPhase=s.phase;
+  tvLastSeconds=s.seconds;
+});
+</script>
+
 </body>
 </html>
