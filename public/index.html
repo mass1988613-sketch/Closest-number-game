@@ -17,7 +17,54 @@ function join(){let code=$('joinCode').value.trim(),name=$('name').value.trim();
 async function loadBank(){try{const res=await fetch('/questions.json');const data=await res.json();bank=Object.entries(data).flatMap(([category,items])=>items.map(([question,answer],i)=>({id:category+'-'+i,category,question,answer,image:''})));$('categoryFilter').innerHTML='<option value="">كل الأقسام</option>'+Object.keys(data).map(c=>'<option>'+esc(c)+'</option>').join('');renderBank();renderSelected();}catch(e){err('تعذر تحميل بنك الأسئلة');}}
 function renderBank(){let category=$('categoryFilter').value,search=$('search').value.trim(),visible=bank.filter(q=>(!category||q.category===category)&&q.question.includes(search));$('bank').innerHTML=visible.map(q=>'<div class="qrow"><input type="checkbox" '+(selection.some(x=>x.id===q.id)?'checked':'')+' onchange="toggleSelect('+bank.indexOf(q)+',this.checked)"><label>'+esc(q.question)+'<small>'+esc(q.category)+' · الإجابة: '+q.answer+'</small></label><button class="alt" onclick="editBank('+bank.indexOf(q)+')">تعديل</button></div>').join('');updateCount();}
 function toggleSelect(i,checked){let q=bank[i];if(checked&&!selection.some(x=>x.id===q.id))selection.push({...q});if(!checked)selection=selection.filter(x=>x.id!==q.id);renderBank();renderSelected();}
-function selectAll(yes){if(yes){for(let q of bank)if(!selection.some(x=>x.id===q.id))selection.push({...q});}else selection=[];renderBank();renderSelected();}
+func<style>
+#answerScale{width:100%;max-width:740px;margin:16px auto 4px;direction:ltr}
+#answerScale .scaleTrack{display:flex;width:100%;height:20px;border-radius:12px;overflow:hidden;border:1px solid #94a3b8}
+#answerScale .scaleTrack span{display:block;height:100%}
+#answerScale .scaleNumbers{display:flex;justify-content:space-between;margin-top:7px;color:#e2e8f0;font-size:clamp(11px,1.1vw,18px)}
+#answerScale .scaleLegend{display:flex;justify-content:center;flex-wrap:wrap;gap:12px;margin-top:10px;font-size:clamp(12px,1vw,17px);direction:rtl}
+#resultsList .answerTable{width:100%;border-collapse:collapse;table-layout:auto;font-size:clamp(12px,1.15vw,19px)}
+#resultsList .answerTable th,#resultsList .answerTable td{padding:10px 5px;text-align:center;border-bottom:1px solid #40506c;overflow-wrap:anywhere}
+#resultsList .answerTable th{color:#facc15}
+#resultsList .answerTable .exact{color:#4ade80;font-weight:800}
+#resultsList .answerTable .near5{color:#86efac;font-weight:700}
+#resultsList .answerTable .near10{color:#facc15;font-weight:700}
+#resultsList .answerTable .miss{color:#cbd5e1}
+#resultsList .answerTable .absent{color:#94a3b8}
+.tv-mode #resultsList .answerTable{font-size:1.1vw}
+@media(max-width:650px){#resultsList .answerTable{font-size:12px}#resultsList .answerTable th,#resultsList .answerTable td{padding:6px 3px}}
+</style>
+<script>
+(function(){
+  const scale=document.createElement('div');
+  scale.id='answerScale';
+  scale.className='hidden';
+  document.getElementById('correctAnswer').insertAdjacentElement('afterend',scale);
+  const fmt=n=>Number(Number(n).toFixed(8)).toLocaleString('en-US',{maximumFractionDigits:8});
+  const safe=v=>String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));
+  socket.on('state',function(s){
+    if(s.code!==room)return;
+    const finished=s.phase==='results'&&Number.isFinite(Number(s.correctAnswer));
+    scale.classList.toggle('hidden',!finished);
+    if(!finished)return;
+    const a=Number(s.correctAnswer),r=Math.abs(a),bounds=[a-r*.1,a-r*.05,a,a+r*.05,a+r*.1];
+    if(r===0){
+      scale.innerHTML='<div class="scaleLegend"><b style="color:#4ade80">● الإجابة 0 = 10 نقاط</b><b style="color:#facc15">● أي إجابة أخرى = 0 نقاط</b></div>';
+    }else{
+      const colors=['#eab308','#22c55e','#16a34a','#22c55e','#eab308'];
+      const widths=[25,24.4,1.2,24.4,25];
+      scale.innerHTML='<div class="scaleTrack">'+colors.map((c,i)=>'<span style="background:'+c+';width:'+widths[i]+'%"></span>').join('')+'</div><div class="scaleNumbers">'+bounds.map(n=>'<span>'+fmt(n)+'</span>').join('')+'</div><div class="scaleLegend"><b style="color:#4ade80">● الإجابة الصحيحة: 10 نقاط</b><b style="color:#86efac">● ضمن ±5%: 7 نقاط</b><b style="color:#facc15">● ضمن ±10%: 3 نقاط</b></div>';
+    }
+    const ordered=[...(s.results||[])].sort((x,y)=>y.points-x.points||y.total-x.total);
+    document.getElementById('resultsList').innerHTML='<table class="answerTable"><thead><tr><th>#</th><th>اللاعب</th><th>الإجابة</th><th>الجولة</th><th>المجموع</th></tr></thead><tbody>'+ordered.map((p,i)=>{
+      const diff=p.answer===null?Infinity:Math.abs(Number(p.answer)-a);
+      const pct=a===0?(diff===0?0:Infinity):diff/Math.abs(a);
+      const cl=p.answer===null?'absent':diff===0?'exact':pct<=.05+1e-12?'near5':pct<=.1+1e-12?'near10':'miss';
+      return '<tr class="'+cl+'"><td>'+(i+1)+'</td><td>'+safe(p.name)+'</td><td>'+(p.answer===null?'—':safe(p.answer))+'</td><td>+'+safe(p.points)+'</td><td>'+safe(p.total)+'</td></tr>';
+    }).join('')+'</tbody></table>';
+  });
+})();
+</script>yes){for(let q of bank)if(!selection.some(x=>x.id===q.id))selection.push({...q});}else selection=[];renderBank();renderSelected();}
 function shuffleSelected(){for(let i=selection.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[selection[i],selection[j]]=[selection[j],selection[i]];}renderSelected();}
 function updateCount(){$('selectedCount').textContent='الأسئلة المختارة: '+selection.length+' من 100';}
 function renderSelected(){updateCount();$('selected').innerHTML=selection.map((q,i)=>'<div class="qrow"><label><strong>'+(i+1)+'.</strong> '+esc(q.question)+'<small>الإجابة: '+q.answer+(q.image?' · 🖼️ صورة':'')+'</small></label><button class="alt" onclick="move('+i+',-1)">↑</button><button class="alt" onclick="move('+i+',1)">↓</button><button class="alt" onclick="editSelected('+i+')">تعديل</button><button class="danger" onclick="removeSelected('+i+')">حذف</button></div>').join('')||'<p class="muted">لم تحدد أي سؤال بعد.</p>';}
