@@ -9,7 +9,7 @@
 <script src="/socket.io/socket.io.js"></script><script>
 const socket=io(),$=id=>document.getElementById(id);let role='',room='',myName='',lastRound=0,bank=[],selection=[],editing=null,editingImage='',currentState=null,prepared=false;
 function err(s){$('error').textContent=s||'';}function esc(v){return String(v).replace(/[&<>"']/g,c=>({'&':'&amp;','<':'&lt;','>':'&gt;','"':'&quot;',"'":'&#39;'}[c]));}
-function showGame(){document.body.classList.toggle('tv-mode',role==='tv');$('home').classList.add('hidden');$('game').classList.remove('hidden');$('hostPanel').classList.toggle('hidden',role!=='host');$('playerPanel').classList.toggle('hidden',role!=='player');}
+function showGame(){document.body.classList.toggle('tv-mode',role==='tv');document.body.classList.toggle('player-mode',role==='player');$('home').classList.add('hidden');$('game').classList.remove('hidden');$('hostPanel').classList.toggle('hidden',role!=='host');$('playerPanel').classList.toggle('hidden',role!=='player');}
 function create(){const password=$('hostPassword').value;if(!password)return err('أدخل كلمة مرور المضيف');socket.emit('create',{password},r=>{if(r.error)return err(r.error);role='host';room=r.code;sessionStorage.setItem('host',JSON.stringify({code:room,key:r.hostKey}));sessionStorage.removeItem('tv');sessionStorage.removeItem('player');showGame();err('');});}
 function watch(){let code=$('tvCode').value.trim();if(!/^\d{6}$/.test(code))return err('أدخل رمزًا من 6 أرقام');socket.emit('watch',{code},r=>{if(r.error)return err(r.error);role='tv';room=code;sessionStorage.setItem('tv',code);sessionStorage.removeItem('host');sessionStorage.removeItem('player');showGame();err('');});}
 function playerToken(code){let key='closest-player-'+code,token=localStorage.getItem(key);if(!token){token=crypto.randomUUID();localStorage.setItem(key,token);}return token;}
@@ -109,7 +109,7 @@ button:active{transform:translateY(3px)}button.alt{background:linear-gradient(11
 @keyframes pulseclock{from{transform:scale(1)}to{transform:scale(1.14)}}
 #nextPreview{border:2px solid #06b6d4;background:#17254e;border-radius:14px;padding:14px;margin:12px 0}
 #nextPreview input,#nextPreview select{margin:5px 0}
-#tvAudioPanel{position:fixed;top:12px;left:12px;z-index:999;background:#1d1d57;padding:8px;border:1px solid #facc15;border-radius:12px}
+#hostAudioPanel{margin-top:12px}
 .tv-mode #resultsList .answerTable{font-size:clamp(12px,1.05vw,22px)}
 </style>
 <script>
@@ -124,14 +124,91 @@ $('bank').before(randomBar);
 function pickRandom(){const cat=$('categoryFilter').value;let pool=bank.filter(q=>!cat||q.category===cat);for(let i=pool.length-1;i>0;i--){let j=Math.floor(Math.random()*(i+1));[pool[i],pool[j]]=[pool[j],pool[i]];}selection=pool.slice(0,Math.max(1,Math.min(100,Number($('autoCount').value)||20))).map(q=>({...q}));renderBank();renderSelected();}
 // Sound is generated locally by Web Audio; no external music or copyrighted recording.
 let ctx=null,audioEnabled=false,lastSoundSecond=null,melodyTimer=null,oscillators=[];
-const soundPanel=document.createElement('div');soundPanel.id='tvAudioPanel';soundPanel.className='hidden';soundPanel.innerHTML='<button id="soundToggle" onclick="toggleSound()">🔊 تفعيل صوت التلفزيون</button><label style="display:block;font-size:12px">الصوت <input id="soundVolume" type="range" min="0" max="100" value="35" style="width:110px"></label>';
-document.body.append(soundPanel);
-function toggleSound(){audioEnabled=!audioEnabled;if(audioEnabled){ctx??=new(window.AudioContext||window.webkitAudioContext)();ctx.resume();}else stopMusic();$('soundToggle').textContent=audioEnabled?'🔇 كتم الصوت':'🔊 تفعيل صوت التلفزيون';}
-function tone(freq,dur=0.15,vol=.12,type='sine'){if(!audioEnabled||role!=='tv'||!ctx)return;const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=freq;g.gain.value=Math.min(.2,vol*Number($('soundVolume').value)/100);o.connect(g);g.connect(ctx.destination);const t=ctx.currentTime;g.gain.setValueAtTime(g.gain.value,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.start(t);o.stop(t+dur+.01);}
+const soundPanel=document.createElement('div');soundPanel.id='hostAudioPanel';soundPanel.className='card hidden';soundPanel.innerHTML='<h3>🎵 صوت شاشة التلفزيون</h3><div class="row"><button id="soundToggle" onclick="toggleSound()">🔇 كتم الموسيقى</button><label>مستوى الصوت <input id="soundVolume" type="range" min="0" max="100" value="35" style="width:160px;vertical-align:middle" oninput="setHostVolume(this.value)"></label></div><p class="muted">قد يحتاج التلفزيون إلى ضغطة واحدة على الشاشة أو الريموت لتفعيل الصوت أول مرة.</p>';
+$('hostPanel').append(soundPanel);
+let remoteSoundEnabled=true,remoteVolume=35;
+function toggleSound(){remoteSoundEnabled=!remoteSoundEnabled;socket.emit('soundSettings',{enabled:remoteSoundEnabled});$('soundToggle').textContent=remoteSoundEnabled?'🔇 كتم الموسيقى':'🔊 تشغيل الموسيقى';}
+function setHostVolume(v){remoteVolume=Number(v);socket.emit('soundSettings',{volume:remoteVolume});}
+function unlockTvAudio(){if(role!=='tv'||audioEnabled)return;try{ctx??=new(window.AudioContext||window.webkitAudioContext)();ctx.resume().then(()=>{audioEnabled=true;if(currentState?.phase==='question'&&currentState.seconds>5)startMusic();}).catch(()=>{});}catch(e){}}
+document.addEventListener('pointerdown',unlockTvAudio);
+document.addEventListener('keydown',unlockTvAudio);
+function tone(freq,dur=0.15,vol=.12,type='sine'){if(!audioEnabled||role!=='tv'||!ctx||!remoteSoundEnabled)return;const o=ctx.createOscillator(),g=ctx.createGain();o.type=type;o.frequency.value=freq;g.gain.value=Math.min(.2,vol*remoteVolume/100);o.connect(g);g.connect(ctx.destination);const t=ctx.currentTime;g.gain.setValueAtTime(g.gain.value,t);g.gain.exponentialRampToValueAtTime(.001,t+dur);o.start(t);o.stop(t+dur+.01);}
 function stopMusic(){if(melodyTimer){clearInterval(melodyTimer);melodyTimer=null;}}
 let tuneIndex=0;const tune=[262,330,392,523,392,330,294,349];
-function startMusic(){if(melodyTimer||!audioEnabled||role!=='tv')return;melodyTimer=setInterval(()=>{tone(tune[tuneIndex++%tune.length],.17,.09,'triangle');},260);}
-socket.on('state',s=>{if(s.code!==room)return;soundPanel.classList.toggle('hidden',role!=='tv');if(role!=='tv')return;if(s.phase==='question'){if(s.seconds>5){startMusic();}else{stopMusic();if(lastSoundSecond!==s.seconds){tone(s.seconds===1?880:620,.23,.19,'square');}}}else{if(melodyTimer)stopMusic();if(lastSoundSecond!==null&&s.phase==='results')tone(440,.5,.14,'triangle');}lastSoundSecond=s.phase==='question'?s.seconds:null;});
+function startMusic(){if(melodyTimer||!audioEnabled||role!=='tv'||!remoteSoundEnabled)return;melodyTimer=setInterval(()=>{tone(tune[tuneIndex++%tune.length],.17,.09,'triangle');},260);}
+socket.on('state',s=>{if(s.code!==room)return;currentState=s;remoteSoundEnabled=s.soundEnabled!==false;remoteVolume=s.soundVolume??35;soundPanel.classList.toggle('hidden',role!=='host');if(role==='host'){$('soundToggle').textContent=remoteSoundEnabled?'🔇 كتم الموسيقى':'🔊 تشغيل الموسيقى';$('soundVolume').value=remoteVolume;}if(role!=='tv')return;if(!remoteSoundEnabled){stopMusic();lastSoundSecond=s.phase==='question'?s.seconds:null;return;}if(s.phase==='question'){if(s.seconds>5){startMusic();}else{stopMusic();if(lastSoundSecond!==s.seconds){tone(s.seconds===1?880:620,.23,.19,'square');}}}else{if(melodyTimer)stopMusic();if(lastSoundSecond!==null&&s.phase==='results')tone(440,.5,.14,'triangle');}lastSoundSecond=s.phase==='question'?s.seconds:null;});
 </script>
 
+
+<style id="arcade-redesign">
+:root{--arcade-pink:#ff4eac;--arcade-yellow:#ffdf46;--arcade-cyan:#37e6ef;--arcade-violet:#a777ff}
+body{background:radial-gradient(circle at 12% 10%,#4924a0 0,transparent 30%),radial-gradient(circle at 92% 80%,#034d8c 0,transparent 35%),#100b32;color:#fff}
+.card{border-radius:24px;border:1px solid #ffffff30;background:linear-gradient(145deg,#24165a,#171440);box-shadow:0 14px 40px #05052070}
+.tv-mode main{padding:1.4vw;background:radial-gradient(circle at 50% 0%,#6034d2 0,transparent 40%),linear-gradient(125deg,#0d0c32,#24145c 65%,#102a65)}
+.tv-mode #game{width:100%}
+.tv-mode .layout{grid-template-columns:minmax(220px,23%) minmax(0,1fr) minmax(220px,23%);gap:1.3vw;align-items:stretch}
+.tv-mode .layout>.card{border:1.5px solid #ffffff30;border-radius:2vw;box-shadow:0 1vw 3vw #05041c70;overflow:hidden}
+.tv-mode #mainQuestion{position:relative;gap:1.2vh;padding:3vw 2.4vw;background:radial-gradient(ellipse at 50% 20%,#5039bd 0%,#272075 55%,#16174e 100%)!important;border:2px solid #b38cff;box-shadow:inset 0 0 50px #ab5aff25,0 1vw 4vw #06051e70}
+.tv-mode #mainQuestion:before{content:'🎯 تحدّي الرقم الأقرب';position:absolute;top:2.2vh;left:50%;transform:translateX(-50%);font-size:clamp(15px,1.4vw,28px);font-weight:900;letter-spacing:.03em;color:#ffdf46;white-space:nowrap}
+.tv-mode #mainQuestion>.muted:first-child{font-size:clamp(12px,1vw,20px);margin-top:4vh;color:#a8d7ff}
+.tv-mode #roomCode{font-size:clamp(26px,3vw,64px);font-weight:1000;color:#fff;text-shadow:0 0 25px #4de5ff}
+.tv-mode #round{display:inline-flex;align-items:center;justify-content:center;border-radius:999px;background:#ffdf46;color:#302064;padding:.5vw 1.4vw;font-weight:900;font-size:clamp(13px,1.15vw,24px);margin:1vh auto 2vh}
+.tv-mode #question{font-size:clamp(29px,3.3vw,75px);font-weight:1000;line-height:1.42;max-width:98%;text-shadow:0 .2vw 0 #101043,0 0 30px #7b59f855;overflow-wrap:break-word}
+.tv-mode #clock{min-width:6vw;min-height:6vw;display:grid;place-items:center;border-radius:50%;background:conic-gradient(#ffdf46 0 75%,#ffffff18 75% 100%);border:.4vw solid #f7dd66;box-shadow:0 0 35px #f5c34c50;color:#23144b;font-size:clamp(32px,3.5vw,76px);font-weight:1000;padding:1vw}
+.tv-mode.last-five #clock{background:#ff466e;border-color:#ffb4c6;color:#fff;box-shadow:0 0 40px #ff477f}
+.tv-mode #leaderboard{background:linear-gradient(180deg,#302178,#191848);padding:1.6vw 1.1vw}
+.tv-mode #results{background:linear-gradient(180deg,#173d87,#19194d);padding:1.6vw 1.1vw}
+.tv-mode #leaderboard h2,.tv-mode #results h2{margin:0 0 2vh;font-size:clamp(17px,1.55vw,32px);text-align:center;color:#ffdf46}
+.tv-mode .score{display:flex;align-items:center;gap:.5vw;margin:.8vh 0;padding:1vw .8vw;border:1px solid #ffffff20;border-radius:1vw;background:#ffffff12;font-size:clamp(14px,1.12vw,25px);min-height:3.7vw}
+.tv-mode #scores .score:first-child{background:linear-gradient(100deg,#f7c94835,#e68c2d25);border-color:#ffdf4688}
+.tv-mode #scores .score:nth-child(2){background:#c4e9ff18}
+.tv-mode #scores .score:nth-child(3){background:#e9a9ff18}
+.tv-mode .score strong{color:#ffdf46;white-space:nowrap}
+.tv-mode #correctAnswer{font-size:clamp(26px,3vw,60px);color:#65ffc4;text-shadow:0 0 25px #0de6a870}
+.tv-mode #answerScale{max-width:95%}
+.tv-mode #answerScale .scaleTrack{height:1.3vw;border:0;box-shadow:0 0 15px #ffffff30}
+.tv-mode #resultsList{font-size:clamp(12px,1vw,22px)}
+.tv-mode #resultsList .answerTable{font-size:clamp(11px,.9vw,20px)}
+.tv-mode #resultsList .answerTable th{color:#ffdf46}
+.tv-mode #questionImage{max-height:27vh;max-width:85%;border:3px solid #ffffff40;box-shadow:0 10px 35px #0008}
+@media(max-width:900px){.tv-mode .layout{grid-template-columns:minmax(150px,23%) minmax(0,1fr) minmax(150px,23%)}}
+@media(prefers-reduced-motion:reduce){.last-five #clock{animation:none}}
+
+/* Phone player: one viewport, no page scrolling; host and TV unaffected */
+@media(max-width:700px){
+ body.player-mode{height:100dvh;overflow:hidden;overscroll-behavior:none}
+ .player-mode main{height:100dvh;max-height:100dvh;min-height:0;padding:8px;display:flex;flex-direction:column;overflow:hidden}
+ .player-mode header,.player-mode #home,.player-mode #rules,.player-mode #hostPanel,.player-mode #results{display:none!important}
+ .player-mode #error{flex:none;font-size:12px;max-height:34px;overflow:hidden}
+ .player-mode #game{display:flex;flex:1;flex-direction:column;min-height:0;overflow:hidden}
+ .player-mode .layout{display:flex;flex:1;min-height:0;flex-direction:column;gap:7px}
+ .player-mode .layout .card{margin:0;padding:10px;border-radius:15px}
+ .player-mode #mainQuestion{order:0;flex:1;min-height:0;display:flex;flex-direction:column;align-items:center;justify-content:center;gap:clamp(4px,1.3vh,12px);overflow:hidden;text-align:center}
+ .player-mode #mainQuestion>.muted:first-child{display:none}
+ .player-mode #roomCode{font-size:13px;font-weight:600;color:#9fd7ff;line-height:1}
+ .player-mode #round{font-size:13px;line-height:1.2}
+ .player-mode #question{font-size:clamp(19px,5.4vw,29px);line-height:1.32;max-height:35%;overflow:auto;overflow-wrap:anywhere;flex-shrink:1}
+ .player-mode #questionImage{max-height:20%;max-width:100%;margin:0 auto;object-fit:contain}
+ .player-mode #correctAnswer{font-size:clamp(18px,5vw,26px);margin:0;max-height:23%;overflow:auto}
+ .player-mode #clock{font-size:clamp(24px,8vw,42px);line-height:1.1;color:#ffe36c}
+ .player-mode #leaderboard{order:1;flex:none;max-height:clamp(52px,12vh,96px);overflow:hidden;padding:6px 10px}
+ .player-mode #leaderboard h2{font-size:12px;margin:0 0 3px}
+ .player-mode #scores{display:flex;gap:6px;overflow-x:auto;overflow-y:hidden;scrollbar-width:none}
+ .player-mode #scores::-webkit-scrollbar{display:none}
+ .player-mode #scores .score{font-size:11px;white-space:nowrap;flex:none;display:flex;gap:8px;align-items:center;border:0;border-radius:8px;background:#ffffff12;padding:5px 8px;margin:0}
+ .player-mode #playerPanel{flex:none;min-height:0;margin:7px 0 0;padding:10px;display:flex;flex-direction:column;gap:6px}
+ .player-mode #playerPanel.hidden{display:none!important}
+ .player-mode #playerPanel h2{font-size:15px;margin:0}
+ .player-mode #guess{font-size:16px;min-height:44px;margin:0;padding:8px}
+ .player-mode #submit{min-height:44px;margin:0;padding:8px;font-size:17px}
+ .player-mode #answerStatus{font-size:12px;margin:0;max-height:36px;overflow:hidden}
+}
+@media(max-width:700px) and (max-height:650px){
+ .player-mode #leaderboard{max-height:50px}
+ .player-mode #question{font-size:19px;max-height:30%}
+ .player-mode #playerPanel{padding:6px;gap:3px}
+ .player-mode #playerPanel h2{display:none}
+ .player-mode #guess,.player-mode #submit{min-height:38px}
+}
+</style>
 </body></html>
