@@ -3,1006 +3,845 @@
     {
       "question": "كم عدد سور القرآن الكريم؟",
       "answer": 114,
-      "type": "number",
-      "image": "/images/quiz-0001.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد أجزاء القرآن الكريم؟",
       "answer": 30,
-      "type": "number",
-      "image": "/images/quiz-0002.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد أحزاب القرآن الكريم؟",
       "answer": 60,
-      "type": "number",
-      "image": "/images/quiz-0003.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد أرباع الأحزاب في القرآن الكريم؟",
       "answer": 240,
-      "type": "number",
-      "image": "/images/quiz-0004.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد آيات سورة الفاتحة؟",
       "answer": 7,
-      "type": "number",
-      "image": "/images/quiz-0005.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد آيات سورة البقرة؟",
       "answer": 286,
-      "type": "number",
-      "image": "/images/quiz-0006.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد آيات سورة آل عمران؟",
       "answer": 200,
-      "type": "number",
-      "image": "/images/quiz-0007.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد آيات سورة النساء؟",
       "answer": 176,
-      "type": "number",
-      "image": "/images/quiz-0008.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد آيات سورة المائدة؟",
       "answer": 120,
-      "type": "number",
-      "image": "/images/quiz-0009.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد آيات سورة الكهف؟",
       "answer": 110,
-      "type": "number",
-      "image": "/images/quiz-0010.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد آيات سورة يوسف؟",
       "answer": 111,
-      "type": "number",
-      "image": "/images/quiz-0011.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد آيات سورة مريم؟",
       "answer": 98,
-      "type": "number",
-      "image": "/images/quiz-0012.webp"
+      "type": "number"
     }
   ],
   "السيرة والتاريخ الإسلامي": [
     {
       "question": "في أي سنة ميلادية كانت الهجرة النبوية؟",
       "answer": 622,
-      "type": "number",
-      "image": "/images/quiz-0013.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد الخلفاء الراشدين؟",
       "answer": 4,
-      "type": "number",
-      "image": "/images/quiz-0014.webp"
+      "type": "number"
     },
     {
       "question": "كم سنة استمرت خلافة أبي بكر الصديق تقريبًا؟",
       "answer": 2,
-      "type": "number",
-      "image": "/images/quiz-0015.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة هجرية وقعت غزوة بدر؟",
       "answer": 2,
-      "type": "number",
-      "image": "/images/quiz-0016.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة هجرية وقعت غزوة أحد؟",
       "answer": 3,
-      "type": "number",
-      "image": "/images/quiz-0017.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة هجرية وقع صلح الحديبية؟",
       "answer": 6,
-      "type": "number",
-      "image": "/images/quiz-0018.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة هجرية وقع فتح مكة؟",
       "answer": 8,
-      "type": "number",
-      "image": "/images/quiz-0019.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة هجرية كانت حجة الوداع؟",
       "answer": 10,
-      "type": "number",
-      "image": "/images/quiz-0020.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد الصلوات المفروضة في اليوم؟",
       "answer": 5,
-      "type": "number",
-      "image": "/images/quiz-0021.webp"
+      "type": "number"
     },
     {
       "question": "كم ركعة في صلاة المغرب؟",
       "answer": 3,
-      "type": "number",
-      "image": "/images/quiz-0022.webp"
+      "type": "number"
     }
   ],
   "السعودية": [
     {
       "question": "في أي سنة ميلادية أُعلن توحيد المملكة العربية السعودية؟",
       "answer": 1932,
-      "type": "number",
-      "image": "/images/quiz-0023.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد المناطق الإدارية في السعودية؟",
       "answer": 13,
-      "type": "number",
-      "image": "/images/quiz-0024.webp"
+      "type": "number"
     },
     {
       "question": "في أي يوم من شهر سبتمبر اليوم الوطني السعودي؟",
       "answer": 23,
-      "type": "number",
-      "image": "/images/quiz-0025.webp"
+      "type": "number"
     },
     {
       "question": "في أي يوم من شهر فبراير يوم التأسيس السعودي؟",
       "answer": 22,
-      "type": "number",
-      "image": "/images/quiz-0026.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد ألوان العلم السعودي الأساسية؟",
       "answer": 2,
-      "type": "number",
-      "image": "/images/quiz-0027.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية تأسست الدولة السعودية الأولى؟",
       "answer": 1727,
-      "type": "number",
-      "image": "/images/quiz-0028.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية تأسست الدولة السعودية الثانية؟",
       "answer": 1824,
-      "type": "number",
-      "image": "/images/quiz-0029.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية بدأ تشغيل مترو الرياض للركاب؟",
       "answer": 2024,
-      "type": "number",
-      "image": "/images/quiz-0030.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد أركان رؤية السعودية 2030؟",
       "answer": 3,
-      "type": "number",
-      "image": "/images/quiz-0031.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية أُطلقت رؤية السعودية 2030؟",
       "answer": 2016,
-      "type": "number",
-      "image": "/images/quiz-0032.webp"
+      "type": "number"
     }
   ],
   "جغرافيا العالم": [
     {
       "question": "كم عدد القارات وفق التقسيم الشائع؟",
       "answer": 7,
-      "type": "number",
-      "image": "/images/quiz-0033.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد المحيطات على الأرض؟",
       "answer": 5,
-      "type": "number",
-      "image": "/images/quiz-0034.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد الدول الأعضاء في الأمم المتحدة؟",
       "answer": 193,
-      "type": "number",
-      "image": "/images/quiz-0035.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد درجات خط الاستواء في دوائر العرض؟",
       "answer": 0,
-      "type": "number",
-      "image": "/images/quiz-0036.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد درجات خط غرينتش في خطوط الطول؟",
       "answer": 0,
-      "type": "number",
-      "image": "/images/quiz-0037.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد دوائر العرض شمالًا وجنوبًا من خط الاستواء؟",
       "answer": 180,
-      "type": "number",
-      "image": "/images/quiz-0038.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد درجات الدائرة الكاملة؟",
       "answer": 360,
-      "type": "number",
-      "image": "/images/quiz-0039.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد الاتجاهات الأصلية؟",
       "answer": 4,
-      "type": "number",
-      "image": "/images/quiz-0040.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد الاتجاهات الفرعية الأساسية؟",
       "answer": 4,
-      "type": "number",
-      "image": "/images/quiz-0041.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد المناطق الزمنية القياسية في تقسيم الأرض النظري؟",
       "answer": 24,
-      "type": "number",
-      "image": "/images/quiz-0042.webp"
+      "type": "number"
     }
   ],
   "التاريخ العالمي": [
     {
       "question": "في أي سنة ميلادية انتهت الحرب العالمية الأولى؟",
       "answer": 1918,
-      "type": "number",
-      "image": "/images/quiz-0043.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية بدأت الحرب العالمية الأولى؟",
       "answer": 1914,
-      "type": "number",
-      "image": "/images/quiz-0044.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية بدأت الحرب العالمية الثانية؟",
       "answer": 1939,
-      "type": "number",
-      "image": "/images/quiz-0045.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية انتهت الحرب العالمية الثانية؟",
       "answer": 1945,
-      "type": "number",
-      "image": "/images/quiz-0046.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية سقط جدار برلين؟",
       "answer": 1989,
-      "type": "number",
-      "image": "/images/quiz-0047.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية تأسست الأمم المتحدة؟",
       "answer": 1945,
-      "type": "number",
-      "image": "/images/quiz-0048.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية وصل الإنسان إلى القمر أول مرة؟",
       "answer": 1969,
-      "type": "number",
-      "image": "/images/quiz-0049.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية غرقت سفينة تايتانيك؟",
       "answer": 1912,
-      "type": "number",
-      "image": "/images/quiz-0050.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية بدأت الثورة الفرنسية؟",
       "answer": 1789,
-      "type": "number",
-      "image": "/images/quiz-0051.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية وقّع إعلان استقلال الولايات المتحدة؟",
       "answer": 1776,
-      "type": "number",
-      "image": "/images/quiz-0052.webp"
+      "type": "number"
     }
   ],
   "كرة القدم": [
     {
       "question": "كم لاعبًا يبدأ المباراة لكل فريق في كرة القدم؟",
       "answer": 11,
-      "type": "number",
-      "image": "/images/quiz-0053.webp"
+      "type": "number"
     },
     {
       "question": "كم مترًا تبعد علامة ركلة الجزاء عن خط المرمى؟",
       "answer": 11,
-      "type": "number",
-      "image": "/images/quiz-0054.webp"
+      "type": "number"
     },
     {
       "question": "كم فريقًا شارك في كأس العالم 2022؟",
       "answer": 32,
-      "type": "number",
-      "image": "/images/quiz-0055.webp"
+      "type": "number"
     },
     {
       "question": "كم مرة فازت البرازيل بكأس العالم للرجال حتى 2026؟",
       "answer": 5,
-      "type": "number",
-      "image": "/images/quiz-0056.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة أُقيم أول كأس عالم للرجال؟",
       "answer": 1930,
-      "type": "number",
-      "image": "/images/quiz-0057.webp"
+      "type": "number"
     },
     {
       "question": "كم تبديلًا يُسمح به عادة لكل فريق في المباريات الرسمية وفق القاعدة الأساسية الحالية؟",
       "answer": 5,
-      "type": "number",
-      "image": "/images/quiz-0058.webp"
+      "type": "number"
     },
     {
       "question": "كم حكمًا مساعدًا على خطي التماس في الطاقم التقليدي؟",
       "answer": 2,
-      "type": "number",
-      "image": "/images/quiz-0059.webp"
+      "type": "number"
     }
   ],
   "الرياضات المتنوعة": [
     {
       "question": "كم لاعبًا في فريق كرة السلة داخل الملعب؟",
       "answer": 5,
-      "type": "number",
-      "image": "/images/quiz-0060.webp"
+      "type": "number"
     },
     {
       "question": "كم نقطة تسجل الرمية الحرة في كرة السلة؟",
       "answer": 1,
-      "type": "number",
-      "image": "/images/quiz-0061.webp"
+      "type": "number"
     },
     {
       "question": "كم نقطة تسجل الرمية من خارج القوس في كرة السلة؟",
       "answer": 3,
-      "type": "number",
-      "image": "/images/quiz-0062.webp"
+      "type": "number"
     },
     {
       "question": "كم لاعبًا في فريق الكرة الطائرة داخل الملعب؟",
       "answer": 6,
-      "type": "number",
-      "image": "/images/quiz-0063.webp"
+      "type": "number"
     },
     {
       "question": "كم شوطًا كحد أقصى في مباراة الكرة الطائرة؟",
       "answer": 5,
-      "type": "number",
-      "image": "/images/quiz-0064.webp"
+      "type": "number"
     },
     {
       "question": "كم لاعبًا في فريق كرة اليد داخل الملعب بمن فيهم الحارس؟",
       "answer": 7,
-      "type": "number",
-      "image": "/images/quiz-0065.webp"
+      "type": "number"
     },
     {
       "question": "كم مترًا طول حوض السباحة الأولمبي؟",
       "answer": 50,
-      "type": "number",
-      "image": "/images/quiz-0066.webp"
+      "type": "number"
     },
     {
       "question": "كم حلقة في شعار الألعاب الأولمبية؟",
       "answer": 5,
-      "type": "number",
-      "image": "/images/quiz-0067.webp"
+      "type": "number"
     },
     {
       "question": "كم خانة في رقعة الشطرنج؟",
       "answer": 64,
-      "type": "number",
-      "image": "/images/quiz-0068.webp"
+      "type": "number"
     }
   ],
   "الفضاء والفلك": [
     {
       "question": "كم كوكبًا في المجموعة الشمسية؟",
       "answer": 8,
-      "type": "number",
-      "image": "/images/quiz-0069.webp"
+      "type": "number"
     },
     {
       "question": "كم قمرًا طبيعيًا رئيسيًا للأرض؟",
       "answer": 1,
-      "type": "number",
-      "image": "/images/quiz-0070.webp"
+      "type": "number"
     },
     {
       "question": "كم يومًا تقريبًا تستغرق الأرض للدوران حول الشمس؟",
       "answer": 365,
-      "type": "number",
-      "image": "/images/quiz-0071.webp"
+      "type": "number"
     },
     {
       "question": "كم ساعة تستغرق الأرض للدوران حول نفسها تقريبًا؟",
       "answer": 24,
-      "type": "number",
-      "image": "/images/quiz-0072.webp"
+      "type": "number"
     },
     {
       "question": "كم دقيقة يستغرق ضوء الشمس للوصول إلى الأرض تقريبًا؟",
       "answer": 8,
-      "type": "number",
-      "image": "/images/quiz-0073.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية أُطلق تلسكوب هابل؟",
       "answer": 1990,
-      "type": "number",
-      "image": "/images/quiz-0074.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية أُطلق تلسكوب جيمس ويب؟",
       "answer": 2021,
-      "type": "number",
-      "image": "/images/quiz-0075.webp"
+      "type": "number"
     },
     {
       "question": "كم كوكبًا صخريًا داخليًا في المجموعة الشمسية؟",
       "answer": 4,
-      "type": "number",
-      "image": "/images/quiz-0076.webp"
+      "type": "number"
     },
     {
       "question": "كم درجة في دورة كاملة حول محور؟",
       "answer": 360,
-      "type": "number",
-      "image": "/images/quiz-0077.webp"
+      "type": "number"
     }
   ],
   "العلوم والفيزياء": [
     {
       "question": "كم درجة مئوية يتجمد عندها الماء النقي تقريبًا عند الضغط الجوي العادي؟",
       "answer": 0,
-      "type": "number",
-      "image": "/images/quiz-0078.webp"
+      "type": "number"
     },
     {
       "question": "كم درجة مئوية يغلي عندها الماء عند الضغط الجوي العادي؟",
       "answer": 100,
-      "type": "number",
-      "image": "/images/quiz-0079.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد البروتونات في ذرة الهيدروجين العادية؟",
       "answer": 1,
-      "type": "number",
-      "image": "/images/quiz-0080.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد البروتونات في ذرة الكربون؟",
       "answer": 6,
-      "type": "number",
-      "image": "/images/quiz-0081.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد البروتونات في ذرة الأكسجين؟",
       "answer": 8,
-      "type": "number",
-      "image": "/images/quiz-0082.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد البروتونات في ذرة الذهب؟",
       "answer": 79,
-      "type": "number",
-      "image": "/images/quiz-0083.webp"
+      "type": "number"
     },
     {
       "question": "كم ضلعًا في الشكل السداسي؟",
       "answer": 6,
-      "type": "number",
-      "image": "/images/quiz-0084.webp"
+      "type": "number"
     }
   ],
   "جسم الإنسان": [
     {
       "question": "كم عظمة في الهيكل العظمي للإنسان البالغ عادة؟",
       "answer": 206,
-      "type": "number",
-      "image": "/images/quiz-0085.webp"
+      "type": "number"
     },
     {
       "question": "كم حجرة في قلب الإنسان؟",
       "answer": 4,
-      "type": "number",
-      "image": "/images/quiz-0086.webp"
+      "type": "number"
     },
     {
       "question": "كم رئة لدى الإنسان عادة؟",
       "answer": 2,
-      "type": "number",
-      "image": "/images/quiz-0087.webp"
+      "type": "number"
     },
     {
       "question": "كم كلية لدى الإنسان عادة؟",
       "answer": 2,
-      "type": "number",
-      "image": "/images/quiz-0088.webp"
+      "type": "number"
     },
     {
       "question": "كم سنًا دائمًا لدى البالغ عند اكتمال أضراس العقل؟",
       "answer": 32,
-      "type": "number",
-      "image": "/images/quiz-0089.webp"
+      "type": "number"
     },
     {
       "question": "كم سنًا لبنيًا لدى الطفل عادة؟",
       "answer": 20,
-      "type": "number",
-      "image": "/images/quiz-0090.webp"
+      "type": "number"
     },
     {
       "question": "كم فقرة عنقية في العمود الفقري للإنسان؟",
       "answer": 7,
-      "type": "number",
-      "image": "/images/quiz-0091.webp"
+      "type": "number"
     },
     {
       "question": "كم زوجًا من الأضلاع لدى الإنسان عادة؟",
       "answer": 12,
-      "type": "number",
-      "image": "/images/quiz-0092.webp"
+      "type": "number"
     },
     {
       "question": "كم صبغيًا في الخلية الجسدية البشرية المعتادة؟",
       "answer": 46,
-      "type": "number",
-      "image": "/images/quiz-0093.webp"
+      "type": "number"
     },
     {
       "question": "كم زوجًا من الصبغيات لدى الإنسان عادة؟",
       "answer": 23,
-      "type": "number",
-      "image": "/images/quiz-0094.webp"
+      "type": "number"
     }
   ],
   "الحيوانات والطبيعة": [
     {
       "question": "كم رجلًا للعنكبوت؟",
       "answer": 8,
-      "type": "number",
-      "image": "/images/quiz-0095.webp"
+      "type": "number"
     },
     {
       "question": "كم رجلًا للنملة؟",
       "answer": 6,
-      "type": "number",
-      "image": "/images/quiz-0096.webp"
+      "type": "number"
     },
     {
       "question": "كم جناحًا للنحلة؟",
       "answer": 4,
-      "type": "number",
-      "image": "/images/quiz-0097.webp"
+      "type": "number"
     },
     {
       "question": "كم قلبًا للأخطبوط؟",
       "answer": 3,
-      "type": "number",
-      "image": "/images/quiz-0098.webp"
+      "type": "number"
     },
     {
       "question": "كم ذراعًا للأخطبوط؟",
       "answer": 8,
-      "type": "number",
-      "image": "/images/quiz-0099.webp"
+      "type": "number"
     },
     {
       "question": "كم رجلًا للسرطان البحري العشاري؟",
       "answer": 10,
-      "type": "number",
-      "image": "/images/quiz-0100.webp"
+      "type": "number"
     },
     {
       "question": "كم رجلًا للفراشة؟",
       "answer": 6,
-      "type": "number",
-      "image": "/images/quiz-0101.webp"
+      "type": "number"
     },
     {
       "question": "كم حجرة في معدة البقرة؟",
       "answer": 4,
-      "type": "number",
-      "image": "/images/quiz-0102.webp"
+      "type": "number"
     },
     {
       "question": "كم رجلًا للنعامة؟",
       "answer": 2,
-      "type": "number",
-      "image": "/images/quiz-0103.webp"
+      "type": "number"
     },
     {
       "question": "كم رجلًا لجراد البحر العشاري؟",
       "answer": 10,
-      "type": "number",
-      "image": "/images/quiz-0104.webp"
+      "type": "number"
     }
   ],
   "التقنية والحاسوب": [
     {
       "question": "كم بت في البايت؟",
       "answer": 8,
-      "type": "number",
-      "image": "/images/quiz-0105.webp"
+      "type": "number"
     },
     {
       "question": "كم قيمة للبت الثنائي الواحد؟",
       "answer": 2,
-      "type": "number",
-      "image": "/images/quiz-0106.webp"
+      "type": "number"
     },
     {
       "question": "كم رقمًا في النظام الثنائي؟",
       "answer": 2,
-      "type": "number",
-      "image": "/images/quiz-0107.webp"
+      "type": "number"
     },
     {
       "question": "كم رمزًا أساسيًا في النظام الست عشري؟",
       "answer": 16,
-      "type": "number",
-      "image": "/images/quiz-0108.webp"
+      "type": "number"
     },
     {
       "question": "كم بت في عنوان IPv4؟",
       "answer": 32,
-      "type": "number",
-      "image": "/images/quiz-0109.webp"
+      "type": "number"
     },
     {
       "question": "كم بت في عنوان IPv6؟",
       "answer": 128,
-      "type": "number",
-      "image": "/images/quiz-0110.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية أُعلن أول هاتف آيفون؟",
       "answer": 2007,
-      "type": "number",
-      "image": "/images/quiz-0111.webp"
+      "type": "number"
     },
     {
       "question": "في أي سنة ميلادية أُطلق نظام أندرويد تجاريًا؟",
       "answer": 2008,
-      "type": "number",
-      "image": "/images/quiz-0112.webp"
+      "type": "number"
     },
     {
       "question": "كم حرفًا في اختصار HTML؟",
       "answer": 4,
-      "type": "number",
-      "image": "/images/quiz-0113.webp"
+      "type": "number"
     },
     {
       "question": "كم بت في 4 بايت؟",
       "answer": 32,
-      "type": "number",
-      "image": "/images/quiz-0114.webp"
+      "type": "number"
     }
   ],
   "السيارات والمواصلات": [
     {
       "question": "كم عجلة في السيارة التقليدية؟",
       "answer": 4,
-      "type": "number",
-      "image": "/images/quiz-0115.webp"
+      "type": "number"
     },
     {
       "question": "كم عجلة في الدراجة النارية المعتادة؟",
       "answer": 2,
-      "type": "number",
-      "image": "/images/quiz-0116.webp"
+      "type": "number"
     },
     {
       "question": "كم مترًا في الكيلومتر؟",
       "answer": 1000,
-      "type": "number",
-      "image": "/images/quiz-0117.webp"
+      "type": "number"
     },
     {
       "question": "كم كيلومترًا تقطع سيارة بسرعة 100 كم/ساعة خلال ساعتين؟",
       "answer": 200,
-      "type": "number",
-      "image": "/images/quiz-0118.webp"
+      "type": "number"
     },
     {
       "question": "كم كيلومترًا تقطع سيارة بسرعة 80 كم/ساعة خلال نصف ساعة؟",
       "answer": 40,
-      "type": "number",
-      "image": "/images/quiz-0119.webp"
+      "type": "number"
     },
     {
       "question": "كم كيلومترًا تقطع سيارة بسرعة 120 كم/ساعة خلال ربع ساعة؟",
       "answer": 30,
-      "type": "number",
-      "image": "/images/quiz-0120.webp"
+      "type": "number"
     }
   ],
   "المال والتجارة": [
     {
       "question": "كم هللة في الريال السعودي؟",
       "answer": 100,
-      "type": "number",
-      "image": "/images/quiz-0121.webp"
+      "type": "number"
     },
     {
       "question": "كم شهرًا في السنة المالية المعتادة؟",
       "answer": 12,
-      "type": "number",
-      "image": "/images/quiz-0122.webp"
+      "type": "number"
     },
     {
       "question": "كم ربعًا في السنة المالية؟",
       "answer": 4,
-      "type": "number",
-      "image": "/images/quiz-0123.webp"
+      "type": "number"
     }
   ],
   "التأمين والمخاطر": [
     {
       "question": "كم شهرًا في وثيقة تأمين سنوية؟",
       "answer": 12,
-      "type": "number",
-      "image": "/images/quiz-0124.webp"
+      "type": "number"
     }
   ],
   "الرياضيات والأرقام": [
     {
       "question": "كم مجموع زوايا المثلث بالدرجات؟",
       "answer": 180,
-      "type": "number",
-      "image": "/images/quiz-0125.webp"
+      "type": "number"
     },
     {
       "question": "كم مجموع زوايا الشكل الرباعي بالدرجات؟",
       "answer": 360,
-      "type": "number",
-      "image": "/images/quiz-0126.webp"
+      "type": "number"
     },
     {
       "question": "كم ضلعًا للمثمن؟",
       "answer": 8,
-      "type": "number",
-      "image": "/images/quiz-0127.webp"
+      "type": "number"
     },
     {
       "question": "كم يساوي 2 أس 10؟",
       "answer": 1024,
-      "type": "number",
-      "image": "/images/quiz-0128.webp"
+      "type": "number"
     },
     {
       "question": "كم يساوي الجذر التربيعي للعدد 144؟",
       "answer": 12,
-      "type": "number",
-      "image": "/images/quiz-0129.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد الأعداد الزوجية من 1 إلى 20؟",
       "answer": 10,
-      "type": "number",
-      "image": "/images/quiz-0130.webp"
+      "type": "number"
     },
     {
       "question": "كم يساوي 15% من 200؟",
       "answer": 30,
-      "type": "number",
-      "image": "/images/quiz-0131.webp"
+      "type": "number"
     },
     {
       "question": "ما مجموع العددين 32 و14؟",
       "answer": 46,
-      "type": "number",
-      "image": "/images/quiz-0132.webp"
+      "type": "number"
     },
     {
       "question": "ما الفرق بين 61 و21؟",
       "answer": 40,
-      "type": "number",
-      "image": "/images/quiz-0133.webp"
+      "type": "number"
     },
     {
       "question": "كم يساوي 90 تربيع؟",
       "answer": 8100,
-      "type": "number",
-      "image": "/images/quiz-0134.webp"
+      "type": "number"
     },
     {
       "question": "ما مجموع العددين 177 و14؟",
       "answer": 191,
-      "type": "number",
-      "image": "/images/quiz-0135.webp"
+      "type": "number"
     },
     {
       "question": "ما الفرق بين 18 و14؟",
       "answer": 4,
-      "type": "number",
-      "image": "/images/quiz-0136.webp"
+      "type": "number"
     }
   ],
   "الوقت والتقويم": [
     {
       "question": "كم شهرًا في السنة الميلادية؟",
       "answer": 12,
-      "type": "number",
-      "image": "/images/quiz-0137.webp"
+      "type": "number"
     },
     {
       "question": "كم يومًا في الأسبوع؟",
       "answer": 7,
-      "type": "number",
-      "image": "/images/quiz-0138.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد أوجه المكعب؟",
       "answer": 6,
-      "type": "number",
-      "image": "/images/quiz-0139.webp"
+      "type": "number"
     },
     {
       "question": "كم عدد أضلاع الشكل السداسي؟",
       "answer": 6,
-      "type": "number",
-      "image": "/images/quiz-0140.webp"
+      "type": "number"
     },
     {
       "question": "كم يومًا في السنة الميلادية العادية؟",
       "answer": 365,
-      "type": "number",
-      "image": "/images/quiz-0141.webp"
+      "type": "number"
     },
     {
       "question": "كم يومًا في السنة الميلادية الكبيسة؟",
       "answer": 366,
-      "type": "number",
-      "image": "/images/quiz-0142.webp"
+      "type": "number"
     },
     {
       "question": "كم يومًا في شهر فبراير بالسنة الكبيسة؟",
       "answer": 29,
-      "type": "number",
-      "image": "/images/quiz-0143.webp"
+      "type": "number"
     },
     {
       "question": "كم شهرًا في نصف السنة؟",
       "answer": 6,
-      "type": "number",
-      "image": "/images/quiz-0144.webp"
+      "type": "number"
     },
     {
       "question": "كم سنة في العقد؟",
       "answer": 10,
-      "type": "number",
-      "image": "/images/quiz-0145.webp"
+      "type": "number"
     }
   ],
   "الهندسة والقياسات": [
     {
       "question": "كم درجة في الزاوية القائمة؟",
       "answer": 90,
-      "type": "number",
-      "image": "/images/quiz-0146.webp"
+      "type": "number"
     },
     {
       "question": "كم درجة في الزاوية المستقيمة؟",
       "answer": 180,
-      "type": "number",
-      "image": "/images/quiz-0147.webp"
+      "type": "number"
     },
     {
       "question": "كم درجة في الدورة الكاملة؟",
       "answer": 360,
-      "type": "number",
-      "image": "/images/quiz-0148.webp"
+      "type": "number"
     },
     {
       "question": "كم ضلعًا للمثلث؟",
       "answer": 3,
-      "type": "number",
-      "image": "/images/quiz-0149.webp"
+      "type": "number"
     },
     {
       "question": "كم وجهًا للمكعب؟",
       "answer": 6,
-      "type": "number",
-      "image": "/images/quiz-0150.webp"
+      "type": "number"
     },
     {
       "question": "كم حرفًا للمكعب؟",
       "answer": 12,
-      "type": "number",
-      "image": "/images/quiz-0151.webp"
+      "type": "number"
     },
     {
       "question": "كم رأسًا للمكعب؟",
       "answer": 8,
-      "type": "number",
-      "image": "/images/quiz-0152.webp"
+      "type": "number"
     },
     {
       "question": "ما مساحة مستطيل طوله 77 سم وعرضه 2 سم، بالسنتيمتر المربع؟",
       "answer": 154,
-      "type": "number",
-      "image": "/images/quiz-0153.webp"
+      "type": "number"
     },
     {
       "question": "ما مساحة مربع طول ضلعه 106 سم، بالسنتيمتر المربع؟",
       "answer": 11236,
-      "type": "number",
-      "image": "/images/quiz-0154.webp"
+      "type": "number"
     },
     {
       "question": "ما مساحة مستطيل طوله 34 سم وعرضه 2 سم، بالسنتيمتر المربع؟",
       "answer": 68,
-      "type": "number",
-      "image": "/images/quiz-0155.webp"
+      "type": "number"
     },
     {
       "question": "ما مساحة مربع طول ضلعه 63 سم، بالسنتيمتر المربع؟",
       "answer": 3969,
-      "type": "number",
-      "image": "/images/quiz-0156.webp"
+      "type": "number"
     },
     {
       "question": "ما مساحة مستطيل طوله 179 سم وعرضه 2 سم، بالسنتيمتر المربع؟",
       "answer": 358,
-      "type": "number",
-      "image": "/images/quiz-0157.webp"
+      "type": "number"
     }
   ],
   "الطعام والطبخ": [
     {
       "question": "كم عدد عظام الأذن الوسطى في أذن الإنسان الواحدة؟",
       "answer": 3,
-      "type": "number",
-      "image": "/images/quiz-0158.webp"
+      "type": "number"
     },
     {
       "question": "كم بيضة في دستة واحدة؟",
       "answer": 12,
-      "type": "number",
-      "image": "/images/quiz-0159.webp"
+      "type": "number"
     }
   ],
   "السفر والسياحة": [
     {
       "question": "كم ليلة في إقامة من مساء الاثنين إلى صباح الخميس؟",
       "answer": 3,
-      "type": "number",
-      "image": "/images/quiz-0160.webp"
+      "type": "number"
     },
     {
       "question": "كم شخصًا في 6 غرف يسكن كل غرفة شخصان؟",
       "answer": 12,
-      "type": "number",
-      "image": "/images/quiz-0161.webp"
+      "type": "number"
     }
   ]
 }
